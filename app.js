@@ -30,7 +30,7 @@ document.querySelector('.btn-roll').addEventListener('click', ()=>{
     
         diceDom.style.display= 'block' ;
     
-        diceDom.src = 'dice-' + dice + '.png';
+        diceDom.src = 'assets/dice-' + dice + '.png';
        
         if(dice !== 1) {
             roundScore += dice ;
