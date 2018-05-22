@@ -10,6 +10,9 @@ GAME RULES:
 */
 
 var dice, activePlayer, scores, roundScore, gamePlaying = true ;
+let times = 0 ;
+let limit = 10;
+
 
 
 init();
@@ -18,20 +21,17 @@ init();
 
 document.querySelector('.btn-roll').addEventListener('click', ()=>{
     // ** generating Random number
+
+    
     
     if(gamePlaying){
 
-        var dice =  Math.floor((Math.random() * 6) + 1 );
+       scramble();
     
 
         // *** Display the Outcome of Random of number 
     
-        var diceDom = document.querySelector('.dice');
-    
-        diceDom.style.display= 'block' ;
-    
-        diceDom.src = 'assets/dice-' + dice + '.png';
-       
+        
         if(dice !== 1) {
             roundScore += dice ;
     
@@ -126,6 +126,28 @@ document.querySelector('.player-1-panel').classList.remove('active');
 document.querySelector('.player-0-panel').classList.add('active');
 document.querySelector('.player-' + activePlayer + '-panel').classList.remove('winner');
 
+        }
+
+
+//************ Scramble Dice effect */
+
+        let scramble = function() {
+            times++;
+             dice = (Math.floor((Math.random() * 100))%6) + 1;
+             var diceDom = document.querySelector('.dice');
+    
+            diceDom.style.display= 'block' ;
+        
+            diceDom.src = 'assets/dice-' + dice + '.png';
+       
+            if(times==limit){
+                times =0;
+
+            }else {
+                console.log(dice);
+                
+                setTimeout(scramble, 150);
+            }
         }
 
         document.querySelector('.btn-new').addEventListener('click', init);
